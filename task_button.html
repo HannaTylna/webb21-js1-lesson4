@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script> 
+    function printError(elemId, hintMsg) {
+        return document.getElementById(elemId).innerHTML = hintMsg;
+    };
+    
+    function validation(){
+        'use strict';
+        const name = document.getElementById("firstName");
+        const surname = document.getElementById("lastName");
+        const email = document.getElementById("email");
+        let result = true;
+
+        if(name.value === ""){
+            printError("firstNameError", "Please enter your first name.");
+            name.focus();
+            result = result && false
+        }
+
+        if(surname.value === ""){
+            printError("lastNameError", "Please enter your last name.");
+            surname.focus();
+            result = result && false
+        }
+
+        if (email.value === "") {
+            printError("emailError", "Please enter a valid e-mail address.");
+            email.focus();
+            result = result && false;
+        }
+
+        document.getElementById("successMessage").innerText = result ? "Thank you for your application" : "";
+
+        return false;
+    }
+    </script>
+</head>
+<body>
+    <h2>Demo Form</h2>
+	<form onsubmit="return validation()" method="post"> 
+        <label>First name:</label>
+		<input type="text" id="firstName" />
+		<p id="firstNameError"> </p>
+        <label>Last name:</label>
+		<input type="text" id="lastName" />
+		<p id="lastNameError"> </p>
+        <label>Email:</label>
+		<input type="text" id="email"/>
+		<p id="emailError"> </p>
+		<button>Send</button>
+	</form>
+	<p id="successMessage"> </p>
+</body>
+</html> 
